@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPANADA - Novedades y Redes Sociales</title>
+    <title>EMPANADA - REDES</title>
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
@@ -54,15 +55,21 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            text-align: center;
         }
         .news h2 {
             color: #444;
             font-size: 2em;
             margin-top: 0;
         }
-        .news p {
-            font-size: 1.1em;
-            line-height: 1.6;
+        .news img {
+            width: 100px; /* Tamaño más pequeño para la imagen */
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .news img:hover {
+            transform: scale(1.1); /* Pequeño efecto de zoom al pasar el mouse */
         }
         footer {
             background-color: #444;
@@ -86,25 +93,29 @@
     <header>
         <h1>EMPANADA 🥟</h1>
         <nav>
-            <a href="index.html">Inicio</a>
+            <a href="inicio.html">Inicio</a>
             <a href="novedades.html">Novedades</a>
-            <a href="#">Admins</a>
-            <a href="#">Redes</a>
+            <a href="admins.html">Admins</a>
+            <a href="redes.html">Redes</a>
         </nav>
     </header>
 
     <div class="container">
-        
         <div class="news">
-            <h2>PROXIMAMENTE</h2>
-            <img src="imagenes/proximamente.jpg" alt="">
-        </div>
+            <h2>Discord</h2>
+            <a href="https://discord.gg/UjvZW9FQut" target="_blank">
+                <img src="imagenes/redes/discord.png" alt="Discord">
+            </a>
 
+            <h2>Whatsapp</h2>
+            <a href="https://chat.whatsapp.com/LGAiXmFBYZRHZEXncJQsp1" target="_blank">
+                <img src="imagenes/redes/WhatsApp.png" alt="Discord">
+            </a>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2024 EMPANADA. Todos los derechos reservados.</p>
-        </div>
     </footer>
 </body>
 </html>
