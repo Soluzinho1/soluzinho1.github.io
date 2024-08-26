@@ -20,7 +20,7 @@
         header {
             background: linear-gradient(135deg, #ffee00, #ff0000);
             color: white;
-            padding: 1rem;
+            padding: 0.5rem; /* Ajuste para hacer el header más pequeño */
             text-align: center;
             position: fixed;
             width: 100%;
@@ -35,9 +35,14 @@
             display: none;
             font-size: 2em;
             cursor: pointer;
-            color: white;
+            color: #000;
             background: none;
             border: none;
+            transition: transform 0.3s ease; /* Añadido para animación de rotación */
+        }
+
+        .menu-toggle.rotate {
+            transform: rotate(90deg); /* Gira 90 grados cuando se aplica la clase */
         }
 
         .menu {
@@ -57,7 +62,7 @@
         }
 
         .menu a img {
-            height: 80px;
+            height: 60px; /* Ajuste para hacer las imágenes del menú más pequeñas */
             transition: width 0.3s;
         }
 
@@ -68,23 +73,31 @@
 
         .sidebar {
             height: 100%;
-            width: 0;
+            width: 0; /* Asegura que la barra esté oculta desde el inicio */
             position: fixed;
             z-index: 1500;
             top: 0;
             left: 0;
             background-color: rgba(255, 136, 0, 0.9);
             overflow-x: hidden;
-            transition: width 0.3s ease;
+            transition: width 0.5s ease, opacity 0.5s ease;
             padding-top: 60px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            opacity: 0; /* Inicialmente oculto con opacidad */
+            display: none; /* Oculta completamente la barra lateral */
+        }
+
+        .sidebar.show {
+            display: block; /* Muestra el elemento */
+            opacity: 1; /* Hace visible el elemento */
+            width: 250px; /* Ancho deseado del menú lateral */
         }
 
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 1.5em;
-            color: #f15b13;
+            color: #000;
             display: block;
             transition: color 0.3s;
         }
@@ -97,8 +110,8 @@
             position: absolute;
             top: 10px;
             right: 20px;
-            font-size: 2em;
-            color: #f15b13;
+            font-size: 3em;
+            color: #000;
             cursor: pointer;
         }
 
@@ -180,7 +193,7 @@
 
             .sidebar {
                 width: 60%;
-                display: block;
+                display: none; /* Asegura que esté oculta por defecto */
                 box-shadow: none;
             }
 
@@ -250,32 +263,42 @@
     <script>
         function toggleNav() {
             var sidebar = document.getElementById("mySidebar");
+            var menuToggle = document.querySelector(".menu-toggle");
             if (sidebar.style.width === "250px") {
-                sidebar.style.width = "0";
+                closeNav();
             } else {
-                sidebar.style.width = "250px";
+                sidebar.style.display = "block"; // Asegura que la barra lateral se muestra antes de la animación
+                setTimeout(function() {
+                    sidebar.classList.add("show"); // Aplica la clase para la animación
+                }, 10); // Breve retraso para permitir la visualización del cambio de display
+                menuToggle.classList.add("rotate");
             }
-        }
+        };
 
         function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
+            var sidebar = document.getElementById("mySidebar");
+            var menuToggle = document.querySelector(".menu-toggle");
+            sidebar.classList.remove("show"); // Elimina la clase para la animación
+            setTimeout(function() {
+                sidebar.style.display = "none"; // Oculta la barra completamente después de la animación
+            }, 500); // Asegura que se oculta después de que termine la transición
+            menuToggle.classList.remove("rotate");
+        };
 
         let lastScrollTop = 0;
         window.addEventListener("scroll", function() {
-            let header = document.querySelector("header");
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop) {
-                header.classList.add("header-hidden");
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            let header = document.querySelector('header');
+            if (currentScroll > lastScrollTop) {
+                header.classList.add('header-hidden');
             } else {
-                header.classList.remove("header-hidden");
+                header.classList.remove('header-hidden');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
-        // Ocultar la barra lateral al cargar la página
+
         window.onload = function() {
-            closeNav();
+            document.getElementById("mySidebar").style.display = "none"; // Oculta la barra lateral al cargar la página
         };
     </script>
 </body>
