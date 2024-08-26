@@ -7,10 +7,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;500&display=swap');
 
- 
         body {
             font-family: 'Raleway', sans-serif;
-            background-color: #555;
+            background-image: url(imagenes/fondo/fondo-minimalista-blanco.jpg);
             color: #f15b13;
             margin: 0;
             padding: 0;
@@ -18,9 +17,9 @@
         }
 
         header {
-            background: linear-gradient(135deg, #f28e13, #f15b13);
+            background: linear-gradient(135deg, #ffee00, #ff0000);
             color: white;
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
             position: fixed;
             width: 100%;
@@ -31,26 +30,32 @@
             transition: background 0.3s ease;
         }
 
-        header h1 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 3em;
-            margin: 0;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        header img {
             animation: pulse 1.5s infinite;
+            width: 15%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
         header nav {
-            margin-top: 10px;
+            margin-top: 1%;
         }
 
         header nav a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0px 1%;
             font-size: 1.2em;
             font-weight: 700;
             transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        header nav a img {
+            width: auto;
+            height: 80px;
+            pointer-events: none;
         }
 
         header nav a:hover {
@@ -59,17 +64,17 @@
         }
 
         .container {
-            max-width: 1200px;
-            margin: 150px auto 0;
+            max-width: 1000px;
+            margin: 15% auto 0;
             padding: 20px;
             text-align: center;
         }
 
         .news {
-            background-color: #fff;
-            padding: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 70px;
             border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0);
             transition: transform 0.3s ease;
             margin-bottom: 30px;
             text-align: center;
@@ -77,13 +82,6 @@
 
         .news:hover {
             transform: translateY(-10px);
-        }
-
-        .news h2 {
-            color: #f15b13;
-            font-size: 2.5em;
-            margin-top: 0;
-            font-weight: 700;
         }
 
         .proximamente {
@@ -94,7 +92,7 @@
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .news img:hover {
+        .proximamente:hover {
             transform: scale(1.05);
             filter: brightness(0.9);
         }
@@ -130,22 +128,49 @@
                 text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
             }
         }
+
+        /* Adaptación para móviles */
+        @media screen and (max-width: 768px) {
+            header img {
+                width: 30%;
+            }
+
+            header nav a {
+                margin: 0 10px;
+                font-size: 1em;
+            }
+
+            .container {
+                margin-top: 25%;
+            }
+
+            .proximamente {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>EMPANADA 🥟</h1>
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="novedades.html">Novedades</a>
-            <a href="admins.html">Admins</a>
-            <a href="redes.html">Redes</a>
+            <a href="index.html">
+                <img class="imagenes-titulo" src="imagenes/titulo/inicio.png" alt="Inicio">
+            </a>
+            <a href="novedades.html">
+                <img class="imagenes-titulo" src="imagenes/titulo/novedades.png" alt="Novedades">
+            </a>
+            <a href="admins.html">
+                <img class="imagenes-titulo" src="imagenes/titulo/ADMINS.png" alt="Admins">
+            </a>
+            <a href="redes.html">
+                <img class="imagenes-titulo" src="imagenes/titulo/redes.png" alt="Redes">
+            </a>
         </nav>
     </header>
 
     <div class="container">
         <div class="news">
-            <img class="proximamente" src="imagenes/memes/proximamente.png" alt="Imagen de Proximamente">
+            <img class="proximamente" src="imagenes/titulo/empanada.png" alt="Imagen de Proximamente">
         </div>
     </div>
 
