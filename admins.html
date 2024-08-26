@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            padding-top: 70px; /* Agregado para evitar que el contenido esté oculto bajo el header */
         }
 
         header {
@@ -27,7 +28,7 @@
             left: 0;
             z-index: 1000;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         .menu-toggle {
@@ -186,6 +187,10 @@
                 margin: 10px 0;
             }
         }
+        /* Estilo para ocultar el menú al hacer scroll */
+        .header-hidden {
+            transform: translateY(-100%);
+        }
     </style>
 </head>
 <body>
@@ -248,6 +253,18 @@
             document.getElementById("mySidebar").style.width = "0";
         }
 
+        let lastScrollTop = 0;
+        window.addEventListener("scroll", function() {
+            let header = document.querySelector("header");
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                header.classList.add("header-hidden");
+            } else {
+                header.classList.remove("header-hidden");
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+        });
         // Ocultar la barra lateral al cargar la página
         window.onload = function() {
             closeNav();
